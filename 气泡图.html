@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html style="height: 100%;width: 100%;">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdn.bootcss.com/d3/5.9.2/d3.js"></script>
+        <script src="https://cdn.bootcss.com/d3/5.9.2/d3.min.js"></script> 
+    </head>
+<body>
+    <svg id="aaa" width="460" height="460" font-family="sans-serif" font-size="14" text-anchor="middle" style="border: 1px solid red;color: black;position: relative;">
+        <div style="position: absolute;left: 183.11485589521092px; top: 187.5334296236699px;">aaaaaaaaaaaaaaa</div>
+    </svg>
+</body>
+
+<script>
+    var data_1 = [
+        {"name":"自动化运维1","count":10},  
+        {"name":"自动化运维1","count":10},  
+        {"name":"自动化运维1","count":10},  
+        {"name":"自动化运维1","count":10},   
+        {"name":"自动化运维1","count":100},
+        {"name":"自动化运维1","count":150},
+        {"name":"自动化运维1","count":50},  
+        {"name":"自动化运维1","count":100},
+        {"name":"自动化运维1","count":150},
+    ]
+    function initCircle(data){
+        // 清空作图区域
+        d3.select("#aaa").selectAll("g").remove()
+        // 给svg对象赋宽高的属性
+        var svg = d3.select("#aaa"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height")
+        var format = d3.format(",d")
+        var pack = d3.pack()
+                .size([width, height])
+                .padding(5)
+        var num,pid
+        var root = d3.hierarchy({children: data})
+                .sum(function(d) { return d.count })
+                .each(function(d) {
+                    if(d.parent == null) {num = d.value}
+                    if (id = d.data.name){
+                        var id
+                        d.id = id
+                        d.class = id
+                        pid = num/(d.value)
+                        d.colorPick = pid>100?5:(pid>50?4:(pid>10?3:(pid>2?2:1)))
+                    }
+                })
+        var node = svg.selectAll(".node")
+                .data(pack(root).leaves())
+                .enter().append("g")
+                .attr("class", "nodeddd")
+                .attr("transform", function(d) {
+                    console.log('文本坐标定位获取：', d.x, d.y, d.data)
+                    return "translate(" + d.x + "," + d.y + ")"
+                })
+        node.append("circle")
+                .attr("id", function(d) { return d.id })
+                .attr("r", function(d) { return d.r })
+                .style("fill", 'red')
+        node.append("clipPath")
+                .attr("id", function(d) { return "clip-" + d.id })
+                .append("use")
+                .attr("xlink:href", function(d) { return "#" + d.id })
+        node.on("click", function(d) {
+            // clickBubble(d.id)//自定义点击事件
+        })
+   }
+   initCircle(data_1)
+</script>
+
+</html>
+    
