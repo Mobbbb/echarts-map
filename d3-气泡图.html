@@ -39,7 +39,7 @@
                 .sum(function(d) { return d.count })
                 .each(function(d) {
                     if(d.parent == null) {num = d.value}
-                    if (id = d.data.name){
+                    if (id = d.data.name) {
                         var id
                         d.id = id
                         d.class = id
@@ -59,12 +59,11 @@
                 .attr("id", function(d) { return d.id })
                 .attr("r", function(d) { return d.r })
                 .style("fill", 'red')
-        node.append("clipPath")
-                .attr("id", function(d) { return "clip-" + d.id })
-                .append("use")
-                .attr("xlink:href", function(d) { return "#" + d.id })
-        node.on("click", function(d) {
-            // clickBubble(d.id)//自定义点击事件
+        node.on("mouseenter", function(d) {
+            console.log('enter')
+        })
+        node.on("mouseout", function(d) {
+            console.log('out')
         })
    }
    initCircle(data_1)
