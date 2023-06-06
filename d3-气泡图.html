@@ -34,7 +34,7 @@
         var pack = d3.pack()
                 .size([width, height])
                 .padding(5)
-        var num,pid
+        var num,index = 0
         var root = d3.hierarchy({children: data})
                 .sum(function(d) { return d.count })
                 .each(function(d) {
@@ -43,8 +43,6 @@
                         var id
                         d.id = id
                         d.class = id
-                        pid = num/(d.value)
-                        d.colorPick = pid>100?5:(pid>50?4:(pid>10?3:(pid>2?2:1)))
                     }
                 })
         var node = svg.selectAll(".node")
@@ -52,13 +50,16 @@
                 .enter().append("g")
                 .attr("class", "nodeddd")
                 .attr("transform", function(d) {
-                    console.log('文本坐标定位获取：', d.x, d.y, d.data)
+                    // console.log('文本坐标定位获取：', d.x, d.y, d.data)
                     return "translate(" + d.x + "," + d.y + ")"
                 })
         node.append("circle")
                 .attr("id", function(d) { return d.id })
                 .attr("r", function(d) { return d.r })
-                .style("fill", 'red')
+                .style("fill", function(d) { 
+                    index ++
+                    return 'red'
+                 })
         node.on("mouseenter", function(d) {
             console.log('enter')
         })
