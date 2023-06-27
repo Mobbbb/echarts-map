@@ -1,4 +1,17 @@
 let centerMap = {
+    "Marshall": {
+        "x": 171.2,
+        "y": 7.1,
+    },
+    "The British Virgin Islands": {
+        "x": -64.65,
+        "y": 18.4,
+    },
+    "Anguilla": {
+        "x": -63.05,
+        "y": 18.22,
+    },
+
     "Somalia": {
         "x": 46.393798828125,
         "y": 5.067700195312497

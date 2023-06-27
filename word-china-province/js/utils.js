@@ -65,8 +65,20 @@ function getOption(map, regions, data = [], zoom = 1) {
                 type: "scatter",
                 coordinateSystem: "geo",
                 data: [
-                    [116.5, 40.3, '北京市'],
-                    [117.29, 39.12, '天津市'],
+                        [-63.05, 18.22, 'Anguilla'],
+                        [-64.65, 18.4, 'The British Virgin Islands'],
+                        [171.2, 7.1, 'Marshall'],
+
+                        [
+                            116.5,
+                            40.3,
+                            "北京市"
+                        ],
+                        [
+                            117.29,
+                            39.12,
+                            "天津市"
+                        ],
                         [
                             115.502461,
                             38.045474,
